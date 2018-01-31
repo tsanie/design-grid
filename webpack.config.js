@@ -9,8 +9,7 @@ module.exports = {
     filename: 'design-grid.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
@@ -97,6 +96,16 @@ module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
+  module.exports.entry = {
+    'design-grid': './src/design-grid.vue'
+  };
+  module.exports.output = {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: '[name].js',
+    libraryTarget: 'umd',
+    library: '[name]'
+  };
   module.exports.externals = {
     vue: 'Vue',
     jquery: '$'
