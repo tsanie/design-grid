@@ -1,6 +1,30 @@
-.design-grid {
+$header-color: #bababa;
+.d-grid {
   border: 1px solid rgb(162, 173, 184);
   position: relative;
   font-size: .75rem;
   font-family: Tahoma, Geneva, Verdana, sans-serif, 'PingFang SC', 'Microsoft YaHei UI';
+  .d-grid-header {
+    .d-column-header {
+      border-right: 1px solid $header-color;
+    }
+    .d-column-header-text {
+      padding: 4px 12px 4px 4px;
+      >span {
+        >input {
+          margin-left: 0;
+          margin-right: 4px;
+        }
+      }
+    }
+    .d-column-header-split {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      right: -4px;
+      width: 8px;
+      z-index: 1;
+      cursor: ew-resize;
+    }
+  }
 }
