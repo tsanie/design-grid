@@ -1,15 +1,57 @@
+// define variables
+//
 $header-color: #bababa;
+$header-bg: #d8dce1;
+// mixins
+@mixin no-padding-margin {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin nowrap-one-row {
+  line-height: 26px;
+  white-space: nowrap;
+}
+
+// start the content
+//
 .d-grid {
   border: 1px solid rgb(162, 173, 184);
   position: relative;
   font-size: .75rem;
   font-family: Tahoma, Geneva, Verdana, sans-serif, 'PingFang SC', 'Microsoft YaHei UI';
+  overflow: hidden;
+  .d-grid-table-header {
+    width: 100%;
+    @include no-padding-margin;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    position: relative;
+    th {
+      @include no-padding-margin;
+      word-wrap: break-word;
+      white-space: normal;
+      div {
+        line-height: 1.4em;
+        min-height: 26px;
+      }
+    }
+  }
   .d-grid-header {
+    overflow: hidden;
+    border-bottom: 1px solid $header-color;
+    background-color: $header-bg;
+    @include nowrap-one-row;
     .d-column-header {
       border-right: 1px solid $header-color;
+      font-weight: normal;
+      position: relative;
     }
     .d-column-header-text {
       padding: 4px 12px 4px 4px;
+      box-sizing: border-box;
       >span {
         >input {
           margin-left: 0;

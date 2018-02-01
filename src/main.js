@@ -18,5 +18,10 @@ new Vue({
         },
       ],
     },
+    events: {
+      columnDblClick(key, index) {
+        console.log(`double click ${key}, index of ${index}.`);
+      },
+    },
   },
 });

@@ -9,7 +9,8 @@ module.exports = {
     'html'
   ],
   rules: {
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'require-jsdoc': 0,
   },
   env: {
     browser: true
