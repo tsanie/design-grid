@@ -39,8 +39,27 @@ export default {
     const rows = this.$refs.gridrows;
     const w = `${width}px`;
     if (rows && rows.length > 0) {
+      let change;
       for (let i = 0; i < rows.length; i++) {
-        const cell = rows[i].children[index];
+        const cell = rows[i].children[index + 1];
+        if (change === undefined) {
+          if (width > 0) {
+            if (cell.style.display === 'none') {
+              change = '';
+            } else {
+              change = null;
+            }
+          } else {
+            if (cell.style.display !== 'none') {
+              change = 'none';
+            } else {
+              change = null;
+            }
+          }
+        }
+        if (change != null) {
+          cell.style.display = change;
+        }
         cell.style.width = w;
         cell.style.minWidth = w;
         cell.style.maxWidth = w;
