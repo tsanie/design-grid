@@ -1,4 +1,38 @@
 export default {
+  assign(target, args) {
+    if (args == null) {
+      return target;
+    }
+    if (typeof Object.assign === 'function') {
+      return Object.assign(target, args);
+    }
+    target = Object(target);
+    for (let i = 0; i < args.length; i++) {
+      const next = args[i];
+      if (next != null) {
+        for (const key in next) {
+          if (Object.prototype.hasOwnProperty.call(next, key)) {
+            target[key] = next[key];
+          }
+        }
+      }
+    }
+    return target;
+  },
+
+  set(obj, key, value) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      obj[key] = value;
+    } else {
+      Object.defineProperty(obj, key, {
+        value: value,
+        writable: true,
+        configurable: true,
+        enumerable: false,
+      });
+    }
+  },
+
   /**
    * get the cell value
    * @param {string} filtername
@@ -73,6 +107,19 @@ export default {
         return e.clientX;
       }
       return cx;
+    },
+    getClientY(e) {
+      if (e == null) {
+        return null;
+      }
+      if (e.originalEvent != null) {
+        e = e.originalEvent;
+      }
+      const cy = (e.touches && e.touches[0] && e.touches[0].clientY);
+      if (cy === undefined) {
+        return e.clientY;
+      }
+      return cy;
     },
     /**
      * get the sum of the offsetLeft

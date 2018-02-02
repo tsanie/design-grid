@@ -11,6 +11,7 @@ function setColumnStyle(c) {
       minWidth: w,
       maxWidth: w,
       textAlign: c.align,
+      height: '26px',
     });
   } else {
     const style = c.columnStyle;

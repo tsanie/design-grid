@@ -18,11 +18,17 @@
     </table><!--
  --><div class="d-grid-body" ref="gridbody" v-on:mousedown.left.self="__row_on_mousedown(-1, $event)">
       <table class="d-grid-body-content">
-        <tr ref="gridrows" class="d-grid-row" v-for="(item, rowidx) in source" v-bind:key="rowidx"
+        <tr ref="gridrows" class="d-grid-row"
+            v-for="(item, rowidx) in source" v-bind:key="rowidx"
             v-bind:class="__contains_index(selectedIndexes, rowidx) ? 'd-grid-row-selected' : ''"
             v-on:mousedown.left.capture="__row_on_mousedown(rowidx, $event)"
             v-on:dblclick.left.capture="_row_on_dblclick">
-          <td v-on:dblclick.left="__row_header_on_dblclick(rowidx)">{{ rowidx + 1 }}</td><!--
+          <d-grid-row-header
+            v-bind:index="rowidx"
+            v-bind:item="item"
+            v-bind:window="__window"
+            v-on:rowHeaderDblClick="__row_header_on_dblclick(rowidx)"
+            v-on:heightChanged="__row_header_on_height_changed"></d-grid-row-header><!--
        --><td v-for="(col, colidx) in columns" v-bind:key="colidx"
               v-bind:class="__contains_index(selectedColIndexes, colidx) ? 'd-grid-cell-selected' : ''"
               v-bind:style="col.columnStyle"
@@ -40,6 +46,7 @@
 <script>
 import DesignGridHeader from './design-grid-header.vue';
 import DesignGridColumnInput from './design-grid-column-input.vue';
+import DesignGridRowHeader from './design-grid-row-header.vue';
 import utils from './utils';
 import functions from './design-grid-func';
 import './design-grid.scss';
@@ -49,6 +56,7 @@ export default {
   name: 'design-grid',
   components: {
     'd-column-header': DesignGridHeader,
+    'd-grid-row-header': DesignGridRowHeader,
     'd-column-input': DesignGridColumnInput,
   },
   props: {
@@ -130,6 +138,9 @@ export default {
     __column_header_on_width_changed(index, width) {
       functions.resizeColumn.call(this, index, width);
       this.$emit('columnWidthChanged', index, width);
+    },
+    __row_header_on_height_changed(index, height) {
+      this.$emit('rowHeightChanged', index, height);
     },
     __contains_index(indexes, index) {
       return indexes != null && indexes.indexOf(index) >= 0;

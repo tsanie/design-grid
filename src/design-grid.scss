@@ -35,13 +35,8 @@ $row-header-width: 30px;
   text-indent: 4px;
   vertical-align: top;
   border: none;
-  height: 24px;
+  height: 100%;
   width: 100%;
-}
-
-@mixin border-one-row($color) {
-  border: 1px solid $color;
-  line-height: 24px;
 }
 
 // start the content
@@ -166,8 +161,18 @@ $row-header-width: 30px;
         &:first-child {
           @include non-selectable;
           text-align: center;
+          position: relative;
           background-color: $header-bg;
           width: $row-header-width;
+          .d-row-header-split {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            height: 6px;
+            z-index: 1;
+            cursor: ns-resize;
+          }
         }
         &:last-child {
           border-right: none;
