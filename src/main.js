@@ -9,12 +9,22 @@ new Vue({
   data: {
     binds: {
       columns: [{
+          key: 'col1',
           caption: 'col 1',
           visible: true,
         },
         {
-          caption: 'col 2',
+          key: 'col2',
           visible: true,
+        },
+      ],
+      source: [{
+          col1: 'abc',
+          col2: 'd',
+        },
+        {
+          col1: 'row2',
+          col2: 'd2',
         },
       ],
     },

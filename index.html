@@ -3,6 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>design-grid</title>
+    <style type="text/css">
+    #app {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+    }
+    .d-grid {
+      height: 100%;
+    }
+    </style>
   </head>
   <body>
     <div id="app"><d-grid v-bind="binds" v-on="events"></d-grid></div>

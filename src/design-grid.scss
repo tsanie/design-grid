@@ -1,8 +1,18 @@
 // define variables
 //
-$header-color: #bababa;
-$header-bg: #d8dce1;
+$header-border: #bababa;
+$header-bg: #e6e6e6;
+$header-selectd-bg: #ccc;
+$even-bg: #f1f4f8;
+$disabled-bg: gray;
+$hover-bg: rgb(220, 238, 244);
+$selected-bg: rgb(186, 221, 233);
+$body-border: #cacaca;
+$selected-border: rgb(109, 189, 209);
+$row-header-width: 30px;
+//
 // mixins
+//
 @mixin no-padding-margin {
   margin: 0;
   padding: 0;
@@ -11,6 +21,19 @@ $header-bg: #d8dce1;
 @mixin nowrap-one-row {
   line-height: 26px;
   white-space: nowrap;
+}
+
+@mixin text-one-row {
+  text-indent: 4px;
+  vertical-align: top;
+  border: none;
+  height: 24px;
+  width: 100%;
+}
+
+@mixin border-one-row($color) {
+  border: 1px solid $color;
+  line-height: 24px;
 }
 
 // start the content
@@ -41,13 +64,19 @@ $header-bg: #d8dce1;
   }
   .d-grid-header {
     overflow: hidden;
-    border-bottom: 1px solid $header-color;
+    border-bottom: 1px solid $header-border;
     background-color: $header-bg;
     @include nowrap-one-row;
     .d-column-header {
-      border-right: 1px solid $header-color;
+      border-right: 1px solid $header-border;
       font-weight: normal;
       position: relative;
+      &:first-child {
+        width: $row-header-width;
+      }
+    }
+    .d-column-selected {
+      background-color: $header-selectd-bg;
     }
     .d-column-header-text {
       padding: 4px 12px 4px 4px;
@@ -67,6 +96,69 @@ $header-bg: #d8dce1;
       width: 8px;
       z-index: 1;
       cursor: ew-resize;
+    }
+  }
+  .d-grid-body {
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 27px;
+    bottom: 0;
+    .d-grid-body-content {
+      position: absolute;
+      min-width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+    }
+    .d-grid-row {
+      @include nowrap-one-row;
+      background-color: #fff;
+      border-bottom: 1px solid $body-border;
+      min-width: 100%;
+      &:nth-child(even) {
+        background-color: $even-bg;
+      }
+      &:hover {
+        background-color: $hover-bg;
+        >td>input[type="text"] {
+          background-color: $hover-bg;
+        }
+      }
+      &.d-grid-row-selected {
+        background-color: $selected-bg;
+        >td:first-child {
+          background-color: $header-selectd-bg;
+        }
+        >td>input[type="text"] {
+          background-color: $selected-bg;
+        }
+      }
+      >td {
+        border-right: 1px solid $body-border;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @include no-padding-margin;
+        &:first-child {
+          text-align: center;
+          background-color: $header-bg;
+          width: $row-header-width;
+        }
+        &:last-child {
+          border-right: none;
+        }
+        &.selected {
+          @include border-one-row($selected-border);
+          box-sizing: border-box;
+          margin-right: 1px;
+        }
+        >input[type="text"] {
+          @include text-one-row;
+          &:disabled {
+            color: $disabled-bg;
+          }
+        }
+      }
     }
   }
 }

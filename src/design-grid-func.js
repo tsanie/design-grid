@@ -81,6 +81,29 @@ export default {
       setColumnStyle.call(this, c);
     }
   },
+
+  getSelectedColumnIndex(e) {
+    if (e.target.className !== 'd-grid-row') {
+      let target = e.target;
+      while (target.parentElement &&
+        (` ${target.parentElement.className} `).indexOf(' d-grid-row ') < 0) {
+        target = target.parentElement;
+      }
+      const parent = target.parentElement;
+      if (parent == null) {
+        return -1;
+      }
+      let columnIndex = 0;
+      for (let i = 0; i < parent.children.length; i++) {
+        if (parent.children[i] === target) {
+          columnIndex = i;
+          break;
+        }
+      }
+      return columnIndex - 1;
+    }
+    return -1;
+  },
   /* eslint-enable no-invalid-this */
   /* eslint-enable no-unused-vars */
 };

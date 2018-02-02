@@ -1,4 +1,46 @@
 export default {
+  /**
+   * get the cell value
+   * @param {string} filtername
+   * @param {*} item
+   * @param {*} column
+   * @param {number} index
+   * @return {string}
+   */
+  value(filtername, item, column, index) {
+    if (item == null) {
+      return '';
+    }
+    const filter = column[filtername || 'filter'];
+    let v;
+    if (typeof filter === 'function') {
+      v = filter.call(this, item, index);
+    } else {
+      v = item && item[column.key];
+    }
+    if (v == null) {
+      return '';
+    }
+    return String(v);
+  },
+  /**
+   * get the cell style
+   * @param {string} filtername
+   * @param {*} item
+   * @param {*} column
+   * @return {string}
+   */
+  style(filtername, item, column) {
+    if (item == null) {
+      return null;
+    }
+    const filter = column[filtername || 'styleFilter'];
+    if (typeof filter === 'function') {
+      return filter.call(this, item);
+    }
+    return null;
+  },
+
   math: {
     /**
      * truncate the given number
