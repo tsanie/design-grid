@@ -23,7 +23,9 @@
             v-on:dblclick.left.capture="_row_on_dblclick">
           <td v-on:dblclick.left="__row_header_on_dblclick(rowidx)">{{ rowidx + 1 }}</td><!--
        --><td v-for="(col, colidx) in columns" v-bind:key="colidx"
-              v-bind:style="col.columnStyle" v-show="col.visible">
+              v-bind:class="__contains_index(selectedColIndexes, colidx) ? 'd-grid-cell-selected' : ''"
+              v-bind:style="col.columnStyle"
+              v-show="col.visible">
             <d-column-input v-bind:item="item" v-bind:column="col"
                             v-bind:index="rowidx"
                             v-on:valueChanged="__row_on_value_changed"></d-column-input>

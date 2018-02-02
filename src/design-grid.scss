@@ -1,14 +1,14 @@
 // define variables
 //
 $header-border: #bababa;
-$header-bg: #e6e6e6;
+$header-bg: #e0e0e0;
 $header-selectd-bg: #ccc;
-$even-bg: #f1f4f8;
+$even-bg: #f4f4f4;
 $disabled-bg: gray;
-$hover-bg: rgb(220, 238, 244);
-$selected-bg: rgb(186, 221, 233);
+$hover-bg: #f0f0f0;
+$selected-bg: #e6e6e6;
+$active-bg: #ccc;
 $body-border: #cacaca;
-$selected-border: rgb(109, 189, 209);
 $row-header-width: 30px;
 //
 // mixins
@@ -142,6 +142,18 @@ $row-header-width: 30px;
         >td>input[type="text"] {
           background-color: $selected-bg;
         }
+        .d-grid-cell-selected {
+          background-color: $active-bg;
+          >input[type="text"] {
+            background-color: $active-bg;
+          }
+        }
+      }
+      .d-grid-cell-selected {
+        background-color: $selected-bg;
+        >input[type="text"] {
+          background-color: $selected-bg;
+        }
       }
       >td {
         border-right: 1px solid $body-border;
@@ -156,11 +168,6 @@ $row-header-width: 30px;
         }
         &:last-child {
           border-right: none;
-        }
-        &.selected {
-          @include border-one-row($selected-border);
-          box-sizing: border-box;
-          margin-right: 1px;
         }
         >input[type="text"] {
           @include text-one-row;
