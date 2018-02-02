@@ -7,7 +7,7 @@ $even-bg: #f4f4f4;
 $disabled-bg: gray;
 $hover-bg: #f0f0f0;
 $selected-bg: #e6e6e6;
-$active-bg: #ccc;
+$active-bg: #fff;
 $body-border: #cacaca;
 $row-header-width: 30px;
 //
@@ -146,6 +146,9 @@ $row-header-width: 30px;
           background-color: $active-bg;
           >input[type="text"] {
             background-color: $active-bg;
+          }
+          >input[type="text"]:disabled {
+            background-color: rgb(235, 235, 228);
           }
         }
       }

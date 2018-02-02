@@ -1,7 +1,8 @@
 <template>
   <th ref="header" class="d-column-header"
       v-bind:style="headerClass"
-      v-on:dblclick.left="dblclick">
+      v-on:mousedown.left="onMouseDown"
+      v-on:dblclick.left="onDblClick">
     <div class="d-column-header-text">
       <span><slot></slot></span>
     </div><!--
@@ -29,7 +30,10 @@ export default {
     },
   },
   methods: {
-    dblclick(e) {
+    onMouseDown(e) {
+      this.$emit('columnMouseDown', this.column.key, this.index);
+    },
+    onDblClick(e) {
       this.$emit('columnDblClick', this.column.key, this.index);
     },
     onResizeStart(e) {

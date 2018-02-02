@@ -9,6 +9,7 @@
           v-bind:window="__window"
           v-bind:key="idx" v-bind:index="idx"
           v-bind:column="col"
+          v-on:columnMouseDown="__column_header_on_mouse_down"
           v-on:columnDblClick="__column_header_on_dblclick"
           v-on:widthChanging="__column_header_on_width_changing"
           v-on:widthChanged="__column_header_on_width_changed">{{ col.caption || col.key }}</d-column-header><!--
@@ -108,6 +109,16 @@ export default {
   methods: {
     __window_on_resize() {
       utils.func.throttle(functions.windowResizing, 8, this);
+    },
+    __column_header_on_mouse_down(key, index) {
+      if (this.selectedIndex != null) {
+        this.selectedIndexes = [];
+      }
+      // columns
+      if (this.selectedColIndex !== index ||
+        (this.selectedColIndexes && this.selectedColIndexes.length > 1)) {
+        this.selectedColIndexes = [index];
+      }
     },
     __column_header_on_dblclick(key, index) {
       this.$emit('columnDblClick', key, index);
