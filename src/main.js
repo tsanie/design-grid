@@ -9,28 +9,29 @@ new Vue({
   data: {
     binds: {
       columns: [{
-          key: 'col1',
-          caption: 'col 1',
-          visible: true,
+          key: 'A',
+          caption: 'custom A',
         },
         {
-          key: 'col2',
-          visible: true,
+          key: 'B',
         },
       ],
       source: [{
-          col1: 'abc',
-          col2: 'd',
+          A: 'abc',
+          B: 'd',
         },
         {
-          col1: 'row2',
-          col2: 'd2',
+          A: 'row2',
+          B: 'd2',
         },
       ],
     },
     events: {
       columnDblClick(key, index) {
-        console.log(`double click ${key}, index of ${index}.`);
+        console.log(`double click ${key} [${index}].`);
+      },
+      rowHeaderDblClick(index) {
+        console.log(`double click [row header], index of ${index}.`);
       },
     },
   },

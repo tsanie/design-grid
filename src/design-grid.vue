@@ -21,7 +21,7 @@
             v-bind:class="__contains_index(selectedIndexes, rowidx) ? 'd-grid-row-selected' : ''"
             v-on:mousedown.left.capture="__row_on_mousedown(rowidx, $event)"
             v-on:dblclick.left.capture="_row_on_dblclick">
-          <td>{{ rowidx + 1 }}</td><!--
+          <td v-on:dblclick.left="__row_header_on_dblclick(rowidx)">{{ rowidx + 1 }}</td><!--
        --><td v-for="(col, colidx) in columns" v-bind:key="colidx"
               v-bind:style="col.columnStyle" v-show="col.visible">
             <d-column-input v-bind:item="item" v-bind:column="col"
@@ -138,6 +138,9 @@ export default {
         (this.selectedColIndexes && this.selectedColIndexes.length > 1)) {
         this.selectedColIndexes = [colIndex];
       }
+    },
+    __row_header_on_dblclick(index) {
+      this.$emit('rowHeaderDblClick', index);
     },
     _row_on_dblclick(e) {
       const columnIndex = functions.getSelectedColumnIndex.call(this, e);

@@ -13,6 +13,14 @@ $row-header-width: 30px;
 //
 // mixins
 //
+@mixin non-selectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+
 @mixin no-padding-margin {
   margin: 0;
   padding: 0;
@@ -68,6 +76,7 @@ $row-header-width: 30px;
     background-color: $header-bg;
     @include nowrap-one-row;
     .d-column-header {
+      @include non-selectable;
       border-right: 1px solid $header-border;
       font-weight: normal;
       position: relative;
@@ -140,6 +149,7 @@ $row-header-width: 30px;
         text-overflow: ellipsis;
         @include no-padding-margin;
         &:first-child {
+          @include non-selectable;
           text-align: center;
           background-color: $header-bg;
           width: $row-header-width;
