@@ -11,18 +11,39 @@ new Vue({
       columns: [{
           key: 'A',
           caption: 'custom A',
+          enabled: 'enabled',
+          width: 260,
         },
         {
           key: 'B',
+          width: 120,
+        },
+        {
+          key: 'C',
+          width: 50,
         },
       ],
       source: [{
-          A: 'abc',
-          B: 'd',
+          A: 'A3/B2',
+          B: '//bing.com',
+          C: '5',
+          enabled: true,
         },
         {
-          A: 'row2',
-          B: 'd2',
+          A: 'link-path-test.PFSTDNAME',
+          B: '',
+          C: '4',
+        },
+        {
+          A: 'link-path-test.PFTYPE',
+          B: '',
+          C: '',
+        },
+        {
+          A: 'test message',
+          B: 'abc',
+          C: '',
+          enabled: true,
         },
       ],
     },
