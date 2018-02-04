@@ -1,21 +1,18 @@
 export default {
   DEFAULT_LINE_HEIGHT: 26,
 
-  assign(target, args) {
-    if (args == null) {
+  assign(target, obj) {
+    if (obj == null) {
       return target;
     }
     if (typeof Object.assign === 'function') {
-      return Object.assign(target, args);
+      return Object.assign(target, obj);
     }
     target = Object(target);
-    for (let i = 0; i < args.length; i++) {
-      const next = args[i];
-      if (next != null) {
-        for (const key in next) {
-          if (Object.prototype.hasOwnProperty.call(next, key)) {
-            target[key] = next[key];
-          }
+    if (obj != null) {
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          target[key] = obj[key];
         }
       }
     }
