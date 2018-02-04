@@ -192,7 +192,7 @@ export default {
     _row_on_dblclick(e) {
       const columnIndex = functions.getSelectedColumnIndex.call(this, e);
       if (columnIndex >= 0) {
-        this.$emit('rowDblClick', this.selectedIndex, columnIndex);
+        this.$emit('cellDblClick', this.selectedIndex, columnIndex);
       }
     },
     __row_on_value_changed(item, key, value) {

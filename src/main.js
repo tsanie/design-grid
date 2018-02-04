@@ -51,12 +51,23 @@ new Vue({
       defaultHeight: 30,
     },
     events: {
+      /* eslint-disable max-len */
       columnDblClick(key, index) {
-        console.log(`double click ${key} [${index}].`);
+        console.log(`double click column header ${key}, column: [${index}].`);
       },
       rowHeaderDblClick(index) {
-        console.log(`double click [row header], index of ${index}.`);
+        console.log(`double click row header, row: [${index}].`);
       },
+      columnWidthChanged(index, width) {
+        console.log(`column width changed, column: [${index}], width: ${width}px.`);
+      },
+      rowHeightChanged(index, height) {
+        console.log(`row height changed, row: [${index}], height: ${height}px.`);
+      },
+      cellDblClick(rowIndex, columnIndex) {
+        console.log(`double click cell, column: [${columnIndex}], row: [${rowIndex}].`);
+      },
+      /* eslint-enable max-len */
     },
   },
 });

@@ -124,7 +124,7 @@ export default {
         return -1;
       }
       let columnIndex = 0;
-      for (let i = 0; i < parent.children.length; i++) {
+      for (let i = 1; i < parent.children.length - 1; i++) {
         if (parent.children[i] === target) {
           columnIndex = i;
           break;
