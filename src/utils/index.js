@@ -33,7 +33,7 @@ export default {
   },
 
   /**
-   * get the cell value
+   * get the cell string value
    * @param {string} filtername
    * @param {*} item
    * @param {*} column
@@ -49,7 +49,7 @@ export default {
     if (typeof filter === 'function') {
       v = filter.call(this, item, index);
     } else {
-      v = item && item[column.key];
+      v = item && item[typeof filter === 'string' ? filter : column.key];
     }
     if (v == null) {
       return '';
@@ -61,17 +61,19 @@ export default {
    * @param {string} filtername
    * @param {*} item
    * @param {*} column
-   * @return {string}
+   * @param {number} index
+   * @return {*}
    */
-  style(filtername, item, column) {
+  style(filtername, item, column, index) {
     if (item == null) {
       return null;
     }
     const filter = column[filtername || 'styleFilter'];
-    if (typeof filter === 'function') {
-      return filter.call(this, item);
+    switch (typeof filter) {
+      case 'function': return filter.call(this, item, index);
+      case 'string': return item && item[filter];
+      default: return filter;
     }
-    return null;
   },
 
   math: {

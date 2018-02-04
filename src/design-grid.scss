@@ -33,7 +33,8 @@ $row-header-width: 30px;
 }
 
 @mixin text-one-row {
-  text-indent: 4px;
+  // text-indent: 4px;
+  padding: 0 4px;
   vertical-align: top;
   border: none;
   height: 100%;
@@ -66,8 +67,8 @@ $row-header-width: 30px;
       word-wrap: break-word;
       white-space: normal;
       div {
-        line-height: 1.4em;
-        min-height: 26px;
+        overflow: hidden;
+        line-height: 18px;
       }
     }
   }
@@ -88,7 +89,7 @@ $row-header-width: 30px;
       background-color: $header-selectd-bg;
     }
     .d-column-header-text {
-      padding: 4px 12px 4px 4px;
+      margin: 4px;
       box-sizing: border-box;
       >span {
         >input {
@@ -189,6 +190,7 @@ $row-header-width: 30px;
         }
         >div {
           height: inherit;
+          box-sizing: border-box;
           >input[type="text"] {
             @include text-one-row;
             &:disabled {

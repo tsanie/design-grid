@@ -36,11 +36,9 @@
               v-bind:class="__contains_index(selectedColIndexes, colidx) ? 'd-grid-cell-selected' : ''"
               v-bind:style="__mixin_style(col.columnStyle, item)"
               v-show="col.visible">
-            <div>
-              <d-column-input v-bind:item="item" v-bind:column="col"
-                              v-bind:index="rowidx"
-                              v-on:valueChanged="__row_on_value_changed"></d-column-input>
-            </div>
+            <d-column-input v-bind:item="item" v-bind:column="col"
+                            v-bind:index="rowidx"
+                            v-on:valueChanged="__row_on_value_changed"></d-column-input>
           </td><td></td>
         </tr>
       </table>
