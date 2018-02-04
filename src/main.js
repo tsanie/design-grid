@@ -46,6 +46,7 @@ new Vue({
           enabled: true,
         },
       ],
+      defaultHeight: 30,
     },
     events: {
       columnDblClick(key, index) {

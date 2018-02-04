@@ -1,9 +1,11 @@
+import utils from './utils';
+
 const MINI_COLUMN_WIDTH = 0;
 const DEFAULT_WIDTH = 100;
 
 /* eslint-disable no-invalid-this */
 /* eslint-disable no-unused-vars */
-function setColumnStyle(c) {
+function setColumnStyle(c, lineheight) {
   const w = `${c.width}px`;
   if (c.columnStyle == null) {
     this.$set(c, 'columnStyle', {
@@ -11,7 +13,7 @@ function setColumnStyle(c) {
       minWidth: w,
       maxWidth: w,
       textAlign: c.align,
-      height: '26px',
+      height: `${isNaN(lineheight) ? utils.DEFAULT_LINE_HEIGHT : lineheight}px`,
     });
   } else {
     const style = c.columnStyle;
@@ -68,13 +70,24 @@ export default {
     }
   },
 
+  heightChanging(index, height) {
+    const row = this.$refs.gridrows[index];
+    const h = `${height}px`;
+    if (row && row.children) {
+      for (let i = 1; i < row.children.length; i++) {
+        const td = row.children[i];
+        td.style.height = h;
+      }
+    }
+  },
+
   resizeColumn(index, width, autoResize) {
     const c = this.columns[index];
     c.width = width;
     setColumnStyle.call(this, c);
   },
 
-  wrapColumns(columns) {
+  wrapColumns(columns, lineheight) {
     for (let i = 0; i < columns.length; i++) {
       const c = columns[i];
       if (c.key === undefined) {
@@ -98,7 +111,7 @@ export default {
       if (c.align === undefined) {
         this.$set(c, 'align', 'left');
       }
-      setColumnStyle.call(this, c);
+      setColumnStyle.call(this, c, lineheight);
     }
   },
 

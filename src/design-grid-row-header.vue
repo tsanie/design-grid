@@ -1,6 +1,7 @@
 <template>
   <td v-bind:style="style" ref="header"
-      v-on:dblclick.left="onDblClick">{{ index + 1 }}<!--
+      v-on:dblclick.left="onDblClick">
+    <div v-bind:style="divStyle">{{ index + 1 }}</div><!--
  --><span class="d-row-header-split"
           v-on:mousedown.prevent.stop.left="onResizeStart"
           v-on:touchstart.prevent.stop="onResizeStart"></span>
@@ -15,6 +16,7 @@ export default {
     item: null,
     index: Number,
     window: null,
+    defaultHeight: Number,
   },
   computed: {
     style() {
@@ -22,12 +24,17 @@ export default {
         height: `${this.getHeight()}px`,
       };
     },
+    divStyle() {
+      return {
+        lineHeight: `${this.getHeight()}px`,
+      };
+    },
   },
   methods: {
     getHeight() {
       const height = Number(this.item.__height);
       if (isNaN(height)) {
-        return 26;
+        return this.defaultHeight;
       }
       return height;
     },
@@ -48,8 +55,10 @@ export default {
       const cy = utils.ui.getClientY(e);
       const val = this._height + (cy - this._cY);
       this._innerHeight = val;
-      this.$refs.header.style.height = `${val}px`;
-      // this.$emit('heightChanging', this._index, val);
+      const h = `${val}px`;
+      this.$refs.header.style.height = h;
+      this.$refs.header.children[0].style.lineHeight = h;
+      this.$emit('heightChanging', this._index, val);
     },
     onResizeEnd() {
       this.window.removeEventListener('mousemove', this.onResizeMove);

@@ -27,7 +27,7 @@ $row-header-width: 30px;
 }
 
 @mixin nowrap-one-row {
-  line-height: 26px;
+  // line-height: 26px;
   white-space: nowrap;
 }
 
@@ -164,6 +164,11 @@ $row-header-width: 30px;
           position: relative;
           background-color: $header-bg;
           width: $row-header-width;
+          // >div {
+          //   width: $row-header-width;
+          //   display: table-cell;
+          //   vertical-align: middle;
+          // }
           .d-row-header-split {
             position: absolute;
             width: 100%;
@@ -177,10 +182,13 @@ $row-header-width: 30px;
         &:last-child {
           border-right: none;
         }
-        >input[type="text"] {
-          @include text-one-row;
-          &:disabled {
-            color: $disabled-bg;
+        >div {
+          height: inherit;
+          >input[type="text"] {
+            @include text-one-row;
+            &:disabled {
+              color: $disabled-bg;
+            }
           }
         }
       }

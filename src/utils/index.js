@@ -1,4 +1,6 @@
 export default {
+  DEFAULT_LINE_HEIGHT: 26,
+
   assign(target, args) {
     if (args == null) {
       return target;

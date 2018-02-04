@@ -27,15 +27,19 @@
             v-bind:index="rowidx"
             v-bind:item="item"
             v-bind:window="__window"
+            v-bind:defaultHeight="defaultHeight"
             v-on:rowHeaderDblClick="__row_header_on_dblclick(rowidx)"
+            v-on:heightChanging="__row_header_on_height_changing"
             v-on:heightChanged="__row_header_on_height_changed"></d-grid-row-header><!--
        --><td v-for="(col, colidx) in columns" v-bind:key="colidx"
               v-bind:class="__contains_index(selectedColIndexes, colidx) ? 'd-grid-cell-selected' : ''"
               v-bind:style="col.columnStyle"
               v-show="col.visible">
-            <d-column-input v-bind:item="item" v-bind:column="col"
-                            v-bind:index="rowidx"
-                            v-on:valueChanged="__row_on_value_changed"></d-column-input>
+            <div>
+              <d-column-input v-bind:item="item" v-bind:column="col"
+                              v-bind:index="rowidx"
+                              v-on:valueChanged="__row_on_value_changed"></d-column-input>
+            </div>
           </td><td></td>
         </tr>
       </table>
@@ -78,6 +82,12 @@ export default {
         return window;
       },
     },
+    defaultHeight: {
+      type: Number,
+      default() {
+        return utils.DEFAULT_LINE_HEIGHT;
+      },
+    },
   },
   data() {
     return {
@@ -86,7 +96,7 @@ export default {
     };
   },
   mounted() {
-    functions.wrapColumns.call(this, this.columns);
+    functions.wrapColumns.call(this, this.columns, this.defaultHeight);
     this.__window.addEventListener('resize', this.__window_on_resize, false);
   },
   beforeDestroy() {
@@ -138,6 +148,9 @@ export default {
     __column_header_on_width_changed(index, width) {
       functions.resizeColumn.call(this, index, width);
       this.$emit('columnWidthChanged', index, width);
+    },
+    __row_header_on_height_changing(index, height) {
+      utils.func.throttle(functions.heightChanging, 8, this, index, height);
     },
     __row_header_on_height_changed(index, height) {
       this.$emit('rowHeightChanged', index, height);
