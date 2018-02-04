@@ -7,51 +7,39 @@ new Vue({
     'd-grid': DesignGrid,
   },
   data: {
+    /* eslint-disable max-len */
+    /* eslint-disable object-curly-spacing */
     binds: {
-      columns: [{
-          key: 'A',
-          caption: 'custom A',
-          enabled: 'enabled',
-          width: 260,
+      columns: [
+        {
+          key: 'A', width: 260,
+          // whether the cell is enabled is depending on a PROPERTY of the item
+          enabled: '__enabled',
+          // the cell style is depending on a FUNCTION
+          styleFilter: (item, index) => index === 2 && { borderBottom: '3px solid green' },
         },
         {
-          key: 'B',
-          width: 120,
+          key: 'B', width: 120, caption: 'custom B',
+          // the cell style is depending on a PROPERTY of the item
+          styleFilter: '__style',
         },
         {
-          key: 'C',
-          width: 50,
+          key: 'C', width: 50, align: 'right',
+          // the cell style is the fixed
+          styleFilter: { borderRight: '4px solid orange' },
         },
       ],
-      source: [{
-          A: 'A3/B2',
-          B: '//bing.com',
-          C: '5',
-          enabled: true,
-        },
-        {
-          A: 'link-path-test.PFSTDNAME',
-          B: '',
-          C: '4',
-          __height: 20,
-        },
-        {
-          A: 'link-path-test.PFTYPE',
-          B: '',
-          C: '',
-          __height: 35,
-        },
-        {
-          A: 'test message',
-          B: 'abc',
-          C: '',
-          enabled: true,
-        },
+      source: [
+        { A: 'A3/B2', B: '//bing.com', C: '5', __enabled: true, __style: { border: '2px solid gray' } },
+        { A: 'link-path-test.PFSTDNAME', B: '', C: '4' },
+        // row 3 has a custom height: 45px
+        { A: 'link-path-test.PFTYPE', B: '', C: '', __height: 45 },
+        { A: 'test message', B: 'abc', C: '', __enabled: true },
       ],
-      defaultHeight: 30,
+      defaultHeight: 26,
     },
+    /* eslint-enable object-curly-spacing */
     events: {
-      /* eslint-disable max-len */
       columnDblClick(key, index) {
         console.log(`double click column header ${key}, column: [${index}].`);
       },
