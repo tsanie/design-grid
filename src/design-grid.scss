@@ -19,6 +19,7 @@ $row-header-width: 30px;
   -ms-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+  cursor: default;
 }
 
 @mixin no-padding-margin {
@@ -37,6 +38,10 @@ $row-header-width: 30px;
   border: none;
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
+  &::-ms-clear, &::-ms-reveal {
+    display: none;
+  }
 }
 
 // start the content
@@ -55,6 +60,7 @@ $row-header-width: 30px;
     border-spacing: 0;
     table-layout: fixed;
     position: relative;
+    border-bottom: 1px solid $header-border;
     th {
       @include no-padding-margin;
       word-wrap: break-word;
@@ -67,7 +73,6 @@ $row-header-width: 30px;
   }
   .d-grid-header {
     overflow: hidden;
-    border-bottom: 1px solid $header-border;
     background-color: $header-bg;
     @include nowrap-one-row;
     .d-column-header {
@@ -131,7 +136,7 @@ $row-header-width: 30px;
       }
       &.d-grid-row-selected {
         background-color: $selected-bg;
-        >td:first-child {
+        >td:first-child>div {
           background-color: $header-selectd-bg;
         }
         >td>input[type="text"] {
@@ -162,13 +167,13 @@ $row-header-width: 30px;
           @include non-selectable;
           text-align: center;
           position: relative;
-          background-color: $header-bg;
           width: $row-header-width;
-          // >div {
-          //   width: $row-header-width;
-          //   display: table-cell;
-          //   vertical-align: middle;
-          // }
+          >div {
+            // width: $row-header-width;
+            // display: table-cell;
+            // vertical-align: middle;
+            background-color: $header-bg;
+          }
           .d-row-header-split {
             position: absolute;
             width: 100%;
