@@ -33,7 +33,7 @@
             v-on:heightChanged="__row_header_on_height_changed"></d-grid-row-header><!--
        --><td v-for="(col, colidx) in columns" v-bind:key="colidx"
               v-bind:class="__contains_index(selectedColIndexes, colidx) ? 'd-grid-cell-selected' : ''"
-              v-bind:style="col.columnStyle"
+              v-bind:style="__mixin_style(col.columnStyle, item)"
               v-show="col.visible">
             <div>
               <d-column-input v-bind:item="item" v-bind:column="col"
@@ -157,6 +157,16 @@ export default {
     },
     __contains_index(indexes, index) {
       return indexes != null && indexes.indexOf(index) >= 0;
+    },
+    __mixin_style(style, item) {
+      let height = Number(item.__height);
+      if (isNaN(height)) {
+        height = this.defaultHeight;
+      }
+      // eslint-disable-next-line object-curly-spacing
+      const s = utils.assign({}, style);
+      s.height = `${height}px`;
+      return s;
     },
     __row_on_mousedown(index, e) {
       if (index < 0 || e.target.className === 'd-grid-row') {

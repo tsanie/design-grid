@@ -1,11 +1,9 @@
-import utils from './utils';
-
 const MINI_COLUMN_WIDTH = 0;
 const DEFAULT_WIDTH = 100;
 
 /* eslint-disable no-invalid-this */
 /* eslint-disable no-unused-vars */
-function setColumnStyle(c, lineheight) {
+function setColumnStyle(c) {
   const w = `${c.width}px`;
   if (c.columnStyle == null) {
     this.$set(c, 'columnStyle', {
@@ -13,7 +11,6 @@ function setColumnStyle(c, lineheight) {
       minWidth: w,
       maxWidth: w,
       textAlign: c.align,
-      height: `${isNaN(lineheight) ? utils.DEFAULT_LINE_HEIGHT : lineheight}px`,
     });
   } else {
     const style = c.columnStyle;
@@ -87,7 +84,7 @@ export default {
     setColumnStyle.call(this, c);
   },
 
-  wrapColumns(columns, lineheight) {
+  wrapColumns(columns) {
     for (let i = 0; i < columns.length; i++) {
       const c = columns[i];
       if (c.key === undefined) {
@@ -111,7 +108,7 @@ export default {
       if (c.align === undefined) {
         this.$set(c, 'align', 'left');
       }
-      setColumnStyle.call(this, c, lineheight);
+      setColumnStyle.call(this, c);
     }
   },
 
