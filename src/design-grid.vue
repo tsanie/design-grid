@@ -28,6 +28,7 @@
             v-bind:item="item"
             v-bind:window="__window"
             v-bind:defaultHeight="defaultHeight"
+            v-on:rowHeaderMouseDown="__row_on_mousedown(rowidx, true)"
             v-on:rowHeaderDblClick="__row_header_on_dblclick(rowidx)"
             v-on:heightChanging="__row_header_on_height_changing"
             v-on:heightChanged="__row_header_on_height_changed"></d-grid-row-header><!--
@@ -169,18 +170,28 @@ export default {
       return s;
     },
     __row_on_mousedown(index, e) {
-      if (index < 0 || e.target.className === 'd-grid-row') {
-        if (this.selectedIndex != null) {
-          this.selectedIndexes = [];
-        }
+      let colIndex;
+      let cancel;
+      if (typeof e === 'boolean') {
+        colIndex = e ? -2 : -1;
+        cancel = index < 0;
       } else {
-        if (this.selectedIndex !== index ||
-          (this.selectedIndexes && this.selectedIndexes.length > 1)) {
-          this.selectedIndexes = [index];
+        colIndex = functions.getSelectedColumnIndex.call(this, e);
+        cancel = index < 0 || e.target.className === 'd-grid-row';
+      }
+      if (colIndex !== -1) {
+        if (cancel) {
+          if (this.selectedIndex != null) {
+            this.selectedIndexes = [];
+          }
+        } else {
+          if (this.selectedIndex !== index ||
+            (this.selectedIndexes && this.selectedIndexes.length > 1)) {
+            this.selectedIndexes = [index];
+          }
         }
       }
       // columns
-      const colIndex = functions.getSelectedColumnIndex.call(this, e);
       if (this.selectedColIndex !== colIndex ||
         (this.selectedColIndexes && this.selectedColIndexes.length > 1)) {
         this.selectedColIndexes = [colIndex];

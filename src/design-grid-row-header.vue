@@ -1,5 +1,6 @@
 <template>
   <td v-bind:style="style" ref="header"
+      v-on:mousedown.left="onMouseDown"
       v-on:dblclick.left="onDblClick">
     <div v-bind:style="divStyle">{{ index + 1 }}</div><!--
  --><span class="d-row-header-split"
@@ -37,6 +38,9 @@ export default {
         return this.defaultHeight;
       }
       return height;
+    },
+    onMouseDown(e) {
+      this.$emit('rowHeaderMouseDown', this.index);
     },
     onDblClick() {
       this.$emit('rowHeaderDblClick', this.index);
