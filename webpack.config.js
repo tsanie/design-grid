@@ -83,6 +83,9 @@ module.exports = {
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
+  externals: {
+    vue: 'Vue'
+  },
   devServer: {
     historyApiFallback: true,
     noInfo: true,
@@ -106,10 +109,6 @@ if (process.env.NODE_ENV === 'production') {
     libraryTarget: 'umd',
     library: '[name]'
   };
-  module.exports.externals = {
-    vue: 'Vue',
-    jquery: '$'
-  }
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({

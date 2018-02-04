@@ -33,11 +33,13 @@ new Vue({
           A: 'link-path-test.PFSTDNAME',
           B: '',
           C: '4',
+          __height: 20,
         },
         {
           A: 'link-path-test.PFTYPE',
           B: '',
           C: '',
+          __height: 35,
         },
         {
           A: 'test message',

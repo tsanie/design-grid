@@ -96,7 +96,7 @@ export default {
     };
   },
   mounted() {
-    functions.wrapColumns.call(this, this.columns, this.defaultHeight);
+    functions.wrapColumns.call(this, this.columns);
     this.__window.addEventListener('resize', this.__window_on_resize, false);
   },
   beforeDestroy() {
