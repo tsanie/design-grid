@@ -186,7 +186,7 @@ export default {
         colIndex = functions.getSelectedColumnIndex.call(this, e);
         cancel = index < 0 || e.target.className === 'd-grid-row';
       }
-      if (colIndex !== -1) {
+      if (colIndex !== -1 || typeof e !== 'boolean') {
         if (cancel) {
           if (this.selectedIndex != null) {
             this.selectedIndexes = [];
