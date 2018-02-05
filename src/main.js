@@ -17,6 +17,7 @@ new Vue({
           enabled: '__enabled',
           // the cell style is depending on a FUNCTION
           style: (item, index) => index === 2 && { borderBottom: '3px solid green' },
+          // cell content style definition
           contentStyle: '__contentStyle',
         },
         {

@@ -51,6 +51,8 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
           enabled: '__enabled',
           // the cell style is depending on a FUNCTION
           style: (item, index) => index === 2 && { borderBottom: '3px solid green' },
+          // cell content style definition
+          contentStyle: '__contentStyle',
         },
         {
           key: 'B', width: 120, caption: 'custom B',
@@ -65,7 +67,7 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
       ],
       source: [
         { A: 'A3/B2', B: '//bing.com', C: '5', __enabled: true, __style: { border: '2px solid gray' } },
-        { A: 'link-path-test.PFSTDNAME', B: '', C: '4' },
+        { A: 'link-path-test.PFSTDNAME', B: '', C: '4', __contentStyle: { color: 'red', textDecoration: 'underline' } },
         // row 3 has a custom height: 45px
         { A: 'link-path-test.PFTYPE', B: '', C: '', __height: 45 },
         { A: 'test message', B: 'abc', C: '', __enabled: true },
