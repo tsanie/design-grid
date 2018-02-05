@@ -9,6 +9,7 @@
           v-bind:window="__window"
           v-bind:key="idx" v-bind:index="idx"
           v-bind:column="col"
+          v-bind:enabled="enabled"
           v-on:columnMouseDown="__column_header_on_mouse_down"
           v-on:columnDblClick="__column_header_on_dblclick"
           v-on:widthChanging="__column_header_on_width_changing"
@@ -30,6 +31,7 @@
             v-bind:item="item"
             v-bind:window="__window"
             v-bind:defaultHeight="defaultHeight"
+            v-bind:enabled="enabled"
             v-on:rowHeaderMouseDown="__row_on_mousedown(rowidx, true)"
             v-on:rowHeaderDblClick="__row_header_on_dblclick(rowidx)"
             v-on:heightChanging="__row_header_on_height_changing"
@@ -40,6 +42,7 @@
               v-show="col.visible">
             <d-column-input v-bind:item="item" v-bind:column="col"
                             v-bind:index="rowidx"
+                            v-bind:enabled="enabled"
                             v-on:valueChanged="__row_on_value_changed"></d-column-input>
           </td><td></td>
         </tr>
@@ -65,6 +68,12 @@ export default {
     'd-column-input': DesignGridColumnInput,
   },
   props: {
+    enabled: {
+      type: Boolean,
+      default() {
+        return true;
+      },
+    },
     columns: {
       type: Array,
       default() {
@@ -177,6 +186,9 @@ export default {
       }
     },
     __row_on_mousedown(index, e) {
+      if (!this.enabled) {
+        return;
+      }
       let colIndex;
       let cancel;
       if (typeof e === 'boolean') {

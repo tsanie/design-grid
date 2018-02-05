@@ -1,7 +1,7 @@
 <template>
   <div v-bind:style="customStyle">
     <input type="text" v-bind="attributes" v-on="column.events"
-          v-bind:disabled.prop="!enabled"
+          v-bind:disabled.prop="!innerEnabled"
           v-bind:style="contentStyle"
           v-bind:value="value"
           v-on:input="onUpdateValue($event.target.value)"
@@ -17,12 +17,16 @@ export default {
     item: null,
     column: null,
     index: Number,
+    enabled: Boolean,
   },
   computed: {
     value() {
       return this.item && this.item[this.column.key];
     },
-    enabled() {
+    innerEnabled() {
+      if (!this.enabled) {
+        return false;
+      }
       const enabledKey = this.column.enabled;
       switch (typeof enabledKey) {
         case 'boolean': return enabledKey;

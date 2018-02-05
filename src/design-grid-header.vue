@@ -7,6 +7,7 @@
       <span><slot></slot></span>
     </div><!--
  --><span class="d-column-header-split"
+          v-show="enabled"
           v-on:mousedown.prevent.stop.left="onResizeStart"
           v-on:touchstart.prevent.stop="onResizeStart"></span>
   </th>
@@ -20,6 +21,7 @@ export default {
     index: Number,
     column: null,
     window: null,
+    enabled: Boolean,
   },
   computed: {
     headerClass() {
@@ -31,9 +33,15 @@ export default {
   },
   methods: {
     onMouseDown(e) {
+      if (!this.enabled) {
+        return;
+      }
       this.$emit('columnMouseDown', this.column.key, this.index);
     },
     onDblClick(e) {
+      if (!this.enabled) {
+        return;
+      }
       this.$emit('columnDblClick', this.column.key, this.index);
     },
     onResizeStart(e) {

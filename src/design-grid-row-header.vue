@@ -4,6 +4,7 @@
       v-on:dblclick.left="onDblClick">
     <div v-bind:style="divStyle">{{ index + 1 }}</div><!--
  --><span class="d-row-header-split"
+          v-show="enabled"
           v-on:mousedown.prevent.stop.left="onResizeStart"
           v-on:touchstart.prevent.stop="onResizeStart"></span>
   </td>
@@ -18,6 +19,7 @@ export default {
     index: Number,
     window: null,
     defaultHeight: Number,
+    enabled: Boolean,
   },
   computed: {
     style() {
@@ -40,9 +42,15 @@ export default {
       return height;
     },
     onMouseDown(e) {
+      if (!this.enabled) {
+        return;
+      }
       this.$emit('rowHeaderMouseDown', this.index);
     },
     onDblClick() {
+      if (!this.enabled) {
+        return;
+      }
       this.$emit('rowHeaderDblClick', this.index);
     },
     onResizeStart(e) {

@@ -10,6 +10,7 @@ new Vue({
     /* eslint-disable max-len */
     /* eslint-disable object-curly-spacing */
     binds: {
+      enabled: true,
       columns: [
         {
           key: 'A', width: 260,
