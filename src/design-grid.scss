@@ -155,9 +155,9 @@ $row-header-width: 30px;
           >input[type="text"] {
             background-color: $active-bg;
           }
-          >input[type="text"]:disabled {
-            background-color: rgb(235, 235, 228);
-          }
+          // >input[type="text"]:disabled {
+          //   background-color: rgb(235, 235, 228);
+          // }
         }
       }
       .d-grid-cell-selected {
@@ -201,7 +201,8 @@ $row-header-width: 30px;
           >input[type="text"] {
             @include text-one-row;
             &:disabled {
-              color: $disabled-bg;
+              color: $disabled-bg !important;
+              background-color: rgb(235, 235, 228) !important;
             }
           }
         }

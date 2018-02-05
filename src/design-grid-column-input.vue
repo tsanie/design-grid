@@ -2,7 +2,7 @@
   <div v-bind:style="customStyle">
     <input type="text" v-bind="attributes" v-on="column.events"
           v-bind:disabled.prop="!enabled"
-          v-bind:style="textAlign"
+          v-bind:style="contentStyle"
           v-bind:value="value"
           v-on:input="onUpdateValue($event.target.value)"
           v-on:change="onChangeValue($event.target.value)" />
@@ -34,13 +34,15 @@ export default {
     customStyle() {
       return utils.style.call(this, null, this.item, this.column, this.index);
     },
-    textAlign() {
-      if (this.column.align === 'left') {
-        return null;
+    contentStyle() {
+      const style = utils.style.call(this, 'contentStyle',
+        this.item,
+        this.column,
+        this.index);
+      if (style != null && this.column.align !== 'left') {
+        style.textAlign = this.column.align;
       }
-      return {
-        textAlign: this.column.align,
-      };
+      return style;
     },
     attributes() {
       if (this.item == null) {

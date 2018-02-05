@@ -50,17 +50,17 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
           // whether the cell is enabled is depending on a PROPERTY of the item
           enabled: '__enabled',
           // the cell style is depending on a FUNCTION
-          styleFilter: (item, index) => index === 2 && { borderBottom: '3px solid green' },
+          style: (item, index) => index === 2 && { borderBottom: '3px solid green' },
         },
         {
           key: 'B', width: 120, caption: 'custom B',
           // the cell style is depending on a PROPERTY of the item
-          styleFilter: '__style',
+          style: '__style',
         },
         {
           key: 'C', width: 50, align: 'right',
           // the cell style is the fixed
-          styleFilter: { borderRight: '4px solid orange' },
+          style: { borderRight: '4px solid orange' },
         },
       ],
       source: [

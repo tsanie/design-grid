@@ -16,22 +16,23 @@ new Vue({
           // whether the cell is enabled is depending on a PROPERTY of the item
           enabled: '__enabled',
           // the cell style is depending on a FUNCTION
-          styleFilter: (item, index) => index === 2 && { borderBottom: '3px solid green' },
+          style: (item, index) => index === 2 && { borderBottom: '3px solid green' },
+          contentStyle: '__contentStyle',
         },
         {
           key: 'B', width: 120, caption: 'custom B',
           // the cell style is depending on a PROPERTY of the item
-          styleFilter: '__style',
+          style: '__style',
         },
         {
           key: 'C', width: 50, align: 'right',
           // the cell style is the fixed
-          styleFilter: { borderRight: '4px solid orange' },
+          style: { borderRight: '4px solid orange' },
         },
       ],
       source: [
         { A: 'A3/B2', B: '//bing.com', C: '5', __enabled: true, __style: { border: '2px solid gray' } },
-        { A: 'link-path-test.PFSTDNAME', B: '', C: '4' },
+        { A: 'link-path-test.PFSTDNAME', B: '', C: '4', __contentStyle: { color: 'red', textDecoration: 'underline' } },
         // row 3 has a custom height: 45px
         { A: 'link-path-test.PFTYPE', B: '', C: '', __height: 45 },
         { A: 'test message', B: 'abc', C: '', __enabled: true },

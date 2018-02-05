@@ -68,7 +68,7 @@ export default {
     if (item == null) {
       return null;
     }
-    const filter = column[filtername || 'styleFilter'];
+    const filter = column[filtername || 'style'];
     switch (typeof filter) {
       case 'function': return filter.call(this, item, index);
       case 'string': return item && item[filter];
