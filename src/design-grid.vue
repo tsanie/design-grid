@@ -16,7 +16,7 @@
      --><th class="d-column-header-holder"></th>
       </tr>
     </table><!--
- --><div class="d-grid-body" ref="gridbody" v-on:mousedown.left.self="__row_on_mousedown(-1, $event)">
+ --><div class="d-grid-body" ref="gridbody" v-on:mousedown.left.self="__row_on_mousedown(-1, true)">
       <table class="d-grid-body-content">
         <tr ref="gridrows" class="d-grid-row"
             v-for="(item, rowidx) in source" v-bind:key="rowidx"
@@ -190,7 +190,9 @@ export default {
         }
       }
       // columns
-      if (this.selectedColIndex !== colIndex ||
+      if (colIndex < 0) {
+        this.selectedColIndexes = [];
+      } else if (this.selectedColIndex !== colIndex ||
         (this.selectedColIndexes && this.selectedColIndexes.length > 1)) {
         this.selectedColIndexes = [colIndex];
       }

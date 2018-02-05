@@ -25,7 +25,7 @@ export default {
     headerClass() {
       return {
         width: `${this.column.width}px`,
-        textAlign: this.column.align,
+        textAlign: 'center', // this.column.align,
       };
     },
   },
