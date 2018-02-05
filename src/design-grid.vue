@@ -16,7 +16,9 @@
      --><th class="d-column-header-holder"></th>
       </tr>
     </table><!--
- --><div class="d-grid-body" ref="gridbody" v-on:mousedown.left.self="__row_on_mousedown(-1, true)">
+ --><div class="d-grid-body" ref="gridbody"
+         v-on:mousedown.left.self="__row_on_mousedown(-1, true)"
+         v-on:scroll.passive="__grid_body_on_scroll">
       <table class="d-grid-body-content">
         <tr ref="gridrows" class="d-grid-row"
             v-for="(item, rowidx) in source" v-bind:key="rowidx"
@@ -166,6 +168,13 @@ export default {
       const s = utils.assign({}, style);
       s.height = `${height}px`;
       return s;
+    },
+    __grid_body_on_scroll(e) {
+      const left = e.target.scrollLeft;
+      if (this._scrollLeft !== left) {
+        utils.set(this, '_scrollLeft', left);
+        this.$refs.header.parentElement.style.marginLeft = `${-left}px`;
+      }
     },
     __row_on_mousedown(index, e) {
       let colIndex;

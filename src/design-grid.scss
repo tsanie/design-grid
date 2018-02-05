@@ -40,9 +40,16 @@ $row-header-width: 30px;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  &::-ms-clear, &::-ms-reveal {
+  &::-ms-clear,
+  &::-ms-reveal {
     display: none;
   }
+}
+
+@mixin fixed-width($width) {
+  width: $width;
+  min-width: $width;
+  max-width: $width;
 }
 
 // start the content
@@ -82,7 +89,7 @@ $row-header-width: 30px;
       font-weight: normal;
       position: relative;
       &:first-child {
-        width: $row-header-width;
+        @include fixed-width($row-header-width);
       }
     }
     .d-column-selected {
@@ -168,7 +175,7 @@ $row-header-width: 30px;
           @include non-selectable;
           text-align: center;
           position: relative;
-          width: $row-header-width;
+          @include fixed-width($row-header-width);
           >div {
             // width: $row-header-width;
             // display: table-cell;
