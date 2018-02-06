@@ -147,9 +147,10 @@ export default {
         (this.selectedColIndexes && this.selectedColIndexes.length > 1)) {
         this.selectedColIndexes = [index];
       }
+      this.$emit('column-header-mouse-down', key, index);
     },
     __column_header_on_dblclick(key, index) {
-      this.$emit('columnDblClick', key, index);
+      this.$emit('column-dbl-click', key, index);
     },
     __column_header_on_width_changing(index, width) {
       functions.updateBodyTop.call(this);
@@ -157,13 +158,13 @@ export default {
     },
     __column_header_on_width_changed(index, width) {
       functions.resizeColumn.call(this, index, width);
-      this.$emit('columnWidthChanged', index, width);
+      this.$emit('column-width-changed', index, width);
     },
     __row_header_on_height_changing(index, height) {
       utils.func.throttle(functions.heightChanging, 8, this, index, height);
     },
     __row_header_on_height_changed(index, height) {
-      this.$emit('rowHeightChanged', index, height);
+      this.$emit('row-height-changed', index, height);
     },
     __contains_index(indexes, index) {
       return indexes != null && indexes.indexOf(index) >= 0;
@@ -194,6 +195,9 @@ export default {
       if (typeof e === 'boolean') {
         colIndex = e ? -2 : -1;
         cancel = index < 0;
+        if (!cancel) {
+          this.$emit('row-header-mouse-down', index);
+        }
       } else {
         colIndex = functions.getSelectedColumnIndex.call(this, e);
         cancel = index < 0 || e.target.className === 'd-grid-row';
