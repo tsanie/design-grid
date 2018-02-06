@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -27,7 +28,22 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
+        use: process.env.NODE_ENV === 'production' ? ExtractTextPlugin.extract({
+          fallback: 'vue-style-loader',
+          use: [{
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        }) : [
           'vue-style-loader',
           'css-loader',
           'sass-loader'
@@ -124,6 +140,10 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    }),
+    // extract css into its own file
+    new ExtractTextPlugin({
+      filename: '[name].css'
     })
   ])
 }
