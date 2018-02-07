@@ -39,7 +39,42 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 ## Preview
 ![preview](https://user-images.githubusercontent.com/980449/35776599-713ec12a-09da-11e8-90b8-ff97f4eb1be5.png)
 
+## Installation
+
+  ### NPM
+
+  ```sh
+  $ npm install design-grid
+  ```
+
+  ### Reference
+
+  ```js
+  // CommonJS
+  // var DesignGrid = require('design-grid');
+  // ES6
+  import DesignGrid from 'design-grid';
+
+  new Vue({
+    components: {
+      'design-grid': DesignGrid,
+    },
+  });
+  ```
+
+  ### Browser
+
+  ```html
+  <script src="path/to/vue.min.js"></script>
+  <script src="dist/design-grid.min.js"></script>
+
+  <script type="text/javascript">
+    var DesignGrid = window['design-grid'].default;
+  </script>
+  ```
+
 ## Usage
+
   ```vue
   <div id="app">
     <d-grid v-bind:columns="columns"

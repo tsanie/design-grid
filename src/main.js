@@ -6,6 +6,9 @@ new Vue({
   components: {
     'd-grid': DesignGrid,
   },
+  // mounted() {
+  //   setInterval(() => this.binds.columns[0].width += 10, 1000);
+  // },
   data: {
     /* eslint-disable max-len */
     /* eslint-disable object-curly-spacing */

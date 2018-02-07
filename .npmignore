@@ -1,0 +1,12 @@
+node_modules
+
+.babelrc
+.editorconfig
+.eslint*
+.travis.yml
+webpack.config.js
+
+*.test.cmd
+
+# do not need here
+src/
