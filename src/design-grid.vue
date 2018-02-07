@@ -223,16 +223,16 @@ export default {
       }
     },
     __row_header_on_dblclick(index) {
-      this.$emit('rowHeaderDblClick', index);
+      this.$emit('row-header-dbl-click', index);
     },
     _row_on_dblclick(e) {
       const columnIndex = functions.getSelectedColumnIndex.call(this, e);
       if (columnIndex >= 0) {
-        this.$emit('cellDblClick', this.selectedIndex, columnIndex);
+        this.$emit('cell-dbl-click', this.selectedIndex, columnIndex);
       }
     },
     __row_on_value_changed(item, key, value) {
-      this.$emit('cellValueChanged', item, key, value);
+      this.$emit('cell-value-changed', item, key, value);
     },
   },
 };

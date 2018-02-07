@@ -43,20 +43,23 @@ new Vue({
     },
     /* eslint-enable object-curly-spacing */
     events: {
-      columnDblClick(key, index) {
+      'column-dbl-click'(key, index) {
         console.log(`double click column header ${key}, column: [${index}].`);
       },
-      rowHeaderDblClick(index) {
+      'row-header-dbl-click'(index) {
         console.log(`double click row header, row: [${index}].`);
       },
-      columnWidthChanged(index, width) {
+      'column-width-changed'(index, width) {
         console.log(`column width changed, column: [${index}], width: ${width}px.`);
       },
-      rowHeightChanged(index, height) {
+      'row-height-changed'(index, height) {
         console.log(`row height changed, row: [${index}], height: ${height}px.`);
       },
-      cellDblClick(rowIndex, columnIndex) {
+      'cell-dbl-click'(rowIndex, columnIndex) {
         console.log(`double click cell, column: [${columnIndex}], row: [${rowIndex}].`);
+      },
+      'cell-value-changed'(item, key, value) {
+        console.log(`cell value changed, item['${key}'] = '${value}'.`, item);
       },
       /* eslint-enable max-len */
     },
