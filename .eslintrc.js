@@ -9,8 +9,11 @@ module.exports = {
     'html'
   ],
   rules: {
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'require-jsdoc': 0,
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'require-jsdoc': 'off',
+    'no-warning-comments': ['warn', {
+      'terms': ['todo']
+    }]
   },
   env: {
     browser: true
