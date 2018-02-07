@@ -78,6 +78,10 @@ export default {
     }
   },
 
+  setColumnStyle(column) {
+    setColumnStyle.call(this, column);
+  },
+
   resizeColumn(index, width, autoResize) {
     const c = this.columns[index];
     c.width = width;

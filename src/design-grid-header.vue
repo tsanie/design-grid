@@ -15,6 +15,7 @@
 
 <script>
 import utils from './utils';
+import functions from './design-grid-func';
 
 export default {
   props: {
@@ -25,6 +26,7 @@ export default {
   },
   computed: {
     headerClass() {
+      functions.setColumnStyle.call(this, this.column);
       return {
         width: `${this.column.width}px`,
         textAlign: 'center', // this.column.align,
@@ -58,6 +60,9 @@ export default {
       const cx = utils.ui.getClientX(e);
       const val = this._width + (cx - this._cX);
       if (val < this.column.minWidth) {
+        val = this.column.minWidth;
+      }
+      if (this._innerWidth === val) {
         return;
       }
       this._innerWidth = val;
