@@ -58,7 +58,7 @@ export default {
     onResizeMove(e) {
       this._isResizing = true;
       const cx = utils.ui.getClientX(e);
-      const val = this._width + (cx - this._cX);
+      let val = this._width + (cx - this._cX);
       if (val < this.column.minWidth) {
         val = this.column.minWidth;
       }

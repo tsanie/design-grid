@@ -65,7 +65,7 @@ export default {
     onResizeMove(e) {
       this._isResizing = true;
       const cy = utils.ui.getClientY(e);
-      const val = this._height + (cy - this._cY);
+      let val = this._height + (cy - this._cY);
       if (val < 0) {
         val = 0;
       }
