@@ -121,7 +121,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.output = {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: '[name].js',
+    filename: '[name].min.js',
     libraryTarget: 'umd',
     library: '[name]'
   };
@@ -143,7 +143,7 @@ if (process.env.NODE_ENV === 'production') {
     }),
     // extract css into its own file
     new ExtractTextPlugin({
-      filename: '[name].css'
+      filename: '[name].min.css'
     })
   ])
 }
