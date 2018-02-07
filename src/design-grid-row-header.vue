@@ -66,6 +66,12 @@ export default {
       this._isResizing = true;
       const cy = utils.ui.getClientY(e);
       const val = this._height + (cy - this._cY);
+      if (val < 0) {
+        val = 0;
+      }
+      if (this._innerHeight === val) {
+        return;
+      }
       this._innerHeight = val;
       const h = `${val}px`;
       this.$refs.header.style.height = h;
