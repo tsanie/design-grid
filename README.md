@@ -1,9 +1,12 @@
 # design-grid
 
+[![npm-image]][npm-url]
 [![build-image]][build-url]
 [![dependency-image]][dependency-url]
 [![devDependency-image]][devDependency-url]
 
+[npm-image]: https://img.shields.io/npm/v/design-grid.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/design-grid
 [build-image]: https://travis-ci.org/tsanie/design-grid.svg?branch=master
 [build-url]: https://travis-ci.org/tsanie/design-grid?branch=master
 [dependency-image]: https://img.shields.io/david/tsanie/design-grid.svg
