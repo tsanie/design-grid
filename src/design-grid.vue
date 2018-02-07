@@ -59,6 +59,22 @@ import utils from './utils';
 import functions from './design-grid-func';
 import './design-grid.scss';
 
+function checkIfSame(indexes, olds) {
+  if (olds === indexes) {
+    return true;
+  }
+  if (olds != null && indexes != null && olds.length === indexes.length) {
+    const tmp = [];
+    olds.forEach((i) => tmp[i] = 1);
+    indexes.forEach((i) => tmp[i]--);
+    let changed = false;
+    tmp.forEach((i) => changed = changed && (tmp[i] !== 0));
+    if (!changed) {
+      return true;
+    }
+  }
+  return false;
+}
 
 export default {
   name: 'design-grid',
@@ -104,6 +120,23 @@ export default {
       selectedIndexes: [],
       selectedColIndexes: [],
     };
+  },
+  watch: {
+    selectedIndexes(val) {
+      if (checkIfSame(val, this._oldSelectedIndexes)) {
+        return;
+      }
+      this.$emit('selected-indexes-changed', val, this._oldSelectedIndexes);
+      this._oldSelectedIndexes = val;
+    },
+    selectedColIndexes(val) {
+      if (checkIfSame(val, this._oldSelectedColIndexes)) {
+        return;
+      }
+      this.$emit('selected-col-indexes-changed', val,
+        this._oldSelectedColIndexes);
+      this._oldSelectedColIndexes = val;
+    },
   },
   mounted() {
     functions.wrapColumns.call(this, this.columns);
