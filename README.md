@@ -1,5 +1,16 @@
 # design-grid
 
+[![build-image]][build-url]
+[![dependency-image]][dependency-url]
+[![devDependency-image]][devDependency-url]
+
+[build-image]: https://travis-ci.org/tsanie/design-grid.svg?branch=master
+[build-url]: https://travis-ci.org/tsanie/design-grid?branch=master
+[dependency-image]: https://img.shields.io/david/tsanie/design-grid.svg
+[dependency-url]: https://david-dm.org/tsanie/design-grid#info=dependencies&view=table
+[devDependency-image]: https://img.shields.io/david/dev/tsanie/design-grid.svg
+[devDependency-url]: https://david-dm.org/tsanie/design-grid#info=devDependencies&view=table
+
 > A Design-Grid vue component.
 
 ## Build Setup
