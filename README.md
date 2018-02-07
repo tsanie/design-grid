@@ -7,9 +7,9 @@
 [build-image]: https://travis-ci.org/tsanie/design-grid.svg?branch=master
 [build-url]: https://travis-ci.org/tsanie/design-grid?branch=master
 [dependency-image]: https://img.shields.io/david/tsanie/design-grid.svg
-[dependency-url]: https://david-dm.org/tsanie/design-grid#info=dependencies&view=table
+[dependency-url]: https://david-dm.org/tsanie/design-grid
 [devDependency-image]: https://img.shields.io/david/dev/tsanie/design-grid.svg
-[devDependency-url]: https://david-dm.org/tsanie/design-grid#info=devDependencies&view=table
+[devDependency-url]: https://david-dm.org/tsanie/design-grid?type=dev
 
 > A Design-Grid vue component.
 
