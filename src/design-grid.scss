@@ -198,11 +198,15 @@ $row-header-width: 30px;
         >div {
           height: inherit;
           box-sizing: border-box;
-          >input[type="text"] {
-            @include text-one-row;
-            &:disabled {
-              color: $disabled-bg !important;
-              background-color: rgb(235, 235, 228) !important;
+          >div {
+            height: inherit;
+            box-sizing: border-box;
+            >input[type="text"] {
+              @include text-one-row;
+              &:disabled {
+                color: $disabled-bg !important;
+                background-color: rgb(235, 235, 228) !important;
+              }
             }
           }
         }

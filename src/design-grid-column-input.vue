@@ -1,11 +1,13 @@
 <template>
-  <div v-bind:style="customStyle">
-    <input type="text" v-bind="attributes" v-on="column.events"
-          v-bind:disabled.prop="!innerEnabled"
-          v-bind:style="contentStyle"
-          v-bind:value="value"
-          v-on:input="onUpdateValue($event.target.value)"
-          v-on:change="onChangeValue($event.target.value)" />
+  <div>
+    <div v-bind:style="customStyle">
+      <input type="text" v-bind="attributes" v-on="column.events"
+            v-bind:disabled.prop="!innerEnabled"
+            v-bind:style="contentStyle"
+            v-bind:value="value"
+            v-on:input="onUpdateValue($event.target.value)"
+            v-on:change="onChangeValue($event.target.value)" />
+    </div>
   </div>
 </template>
 
