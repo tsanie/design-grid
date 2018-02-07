@@ -71,7 +71,7 @@ export default {
     const row = this.$refs.gridrows[index];
     const h = `${height}px`;
     if (row && row.children) {
-      for (let i = 1; i < row.children.length; i++) {
+      for (let i = 1; i < row.children.length - 1; i++) {
         const td = row.children[i];
         td.style.height = h;
       }

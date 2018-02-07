@@ -201,6 +201,7 @@ $row-header-width: 30px;
           >div {
             height: inherit;
             box-sizing: border-box;
+            overflow: hidden;
             >input[type="text"] {
               @include text-one-row;
               &:disabled {
