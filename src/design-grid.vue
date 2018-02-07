@@ -209,6 +209,9 @@ export default {
       }
       // eslint-disable-next-line object-curly-spacing
       const s = utils.assign({}, style);
+      if (s.width === '0px') {
+        s.display = 'none';
+      }
       s.height = `${height}px`;
       return s;
     },
