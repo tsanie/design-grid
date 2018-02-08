@@ -44,19 +44,22 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 
 ## Installation
 
-  ### NPM
+  ### NPM ###
 
   ```sh
   $ npm install design-grid
   ```
 
-  ### Reference
+  ### Reference ###
 
   ```js
   // CommonJS
-  // var DesignGrid = require('design-grid');
+  // var DesignGrid = require('design-grid').default;
+  // require('design-grid/dist/design-grid.min.css');
+
   // ES6
   import DesignGrid from 'design-grid';
+  import 'design-grid/dist/design-grid.min.css'
 
   new Vue({
     components: {
@@ -65,11 +68,13 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
   });
   ```
 
-  ### Browser
+  ### Browser ###
 
   ```html
   <script src="path/to/vue.min.js"></script>
   <script src="dist/design-grid.min.js"></script>
+
+  <link rel="stylesheet" href="dist/design-grid.min.css">
 
   <script type="text/javascript">
     var DesignGrid = window['design-grid'].default;
@@ -87,8 +92,9 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
   ```
   ```js
   import Vue from 'vue';
-  import DesignGrid from './design-grid.vue';
-  
+  import DesignGrid from 'design-grid';
+  import 'design-grid/dist/design-grid.min.css'
+
   new Vue({
     el: '#app',
     components: { 'd-grid': DesignGrid },
