@@ -66,7 +66,7 @@ export default {
       this._isResizing = true;
       const cy = utils.ui.getClientY(e);
       let val = this._height + (cy - this._cY);
-      // TODO: don't need to resize the row height below zero
+      // TODO: don't allow to resize the row height below zero
       // because of the row-header resizer
       if (val < 1) {
         val = 1;
