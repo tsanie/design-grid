@@ -262,6 +262,9 @@ export default {
       this.$emit('row-header-dbl-click', index);
     },
     _row_on_dblclick(e) {
+      if (!this.enabled) {
+        return;
+      }
       const columnIndex = functions.getSelectedColumnIndex.call(this, e);
       if (columnIndex >= 0) {
         this.$emit('cell-dbl-click', this.selectedIndex, columnIndex);
