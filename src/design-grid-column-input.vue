@@ -2,7 +2,8 @@
   <div>
     <div v-bind:style="customStyle">
       <input type="text" v-bind="attributes" v-on="column.events"
-            v-bind:disabled.prop="!innerEnabled"
+            v-bind:readOnly.prop="!innerEnabled"
+            v-bind:class="!innerEnabled && 'readonly-input'"
             v-bind:style="contentStyle"
             v-bind:value="value"
             v-on:input="onUpdateValue($event.target.value)"

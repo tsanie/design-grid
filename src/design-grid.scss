@@ -204,7 +204,7 @@ $row-header-width: 30px;
             overflow: hidden;
             >input[type="text"] {
               @include text-one-row;
-              &:disabled {
+              &.readonly-input {
                 color: $disabled-bg;
                 background-color: rgb(235, 235, 228);
               }
